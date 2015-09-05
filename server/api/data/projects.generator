@@ -1,25 +1,23 @@
 [
-  '{{repeat(50)}}',
+  '{{repeat(80)}}',
   {
-    _id: '{{objectId()}}',
-    index: '{{index()}}',
     creator: {
       name: '{{firstName()}} {{surname()}}',
-      picture: 'http://lorempixel.com/200/200/people/'
+      picture: '{{"http://api.randomuser.me/portraits/" + random("men/", "women/") + integer(1, 40) + ".jpg"}}'
     },
     currentUnitsPerDay: '{{floating(100, 200)}}',
     targetUnitsPerDay: '{{integer(250, 400)}}',
-    picture: 'http://lorempixel.com/1000/400/',
+    picture: 'http://lorempixel.com/600/400/',
     leadContributor: {
       name: '{{firstName()}} {{surname()}}',
-      picture: 'http://lorempixel.com/200/200/people/',
-      minutesPerDay: '{{floating(15, 35)}}'
+      picture: '{{"http://api.randomuser.me/portraits/" + random("men/", "women/") + integer(1, 40) + ".jpg"}}',
+      unitsPerDay: '{{floating(15, 35)}}'
     },
-    name: '{{company().toUpperCase()}}',
+    repo: 'heroku/node-js-sample',
+    name: '{{company()}}',
     description: '{{lorem(1, "paragraphs")}}',
     tags: [
-      '{{repeat(7)}}',
-      '{{lorem(1, "words")}}'
+      '{{random("space", "medical", "education", "biology", "government", "community")}}'
     ]
   }
 ]
