@@ -10,11 +10,13 @@ var app       = express();
 // Middleware
 app.use(morgan('dev'));
 app.use(session({
+  resave:             true,
+  saveUninitialized:  false,
   secret: 'This is a shitty, very unsecret secret'
 }));
 app.use('/static', express.static(path.join('..', 'client')));
 app.use('/api', bodyParser.json());
-app.use('/api', bodyParser.urlencoded());
+app.use('/api', bodyParser.urlencoded({ extended: true }));
 
 // Routes
 require('./api/auth')(app);
