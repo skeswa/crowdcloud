@@ -1,0 +1,30 @@
+{
+  "name": "crowdcloud",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Empower world-class research with the computational power it deserves.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/skeswa/crowdcloud.git"
+  },
+  "keywords": [
+    "crowdfunding",
+    "azure"
+  ],
+  "author": "Sandile Keswa, Dan Caddev",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/skeswa/crowdcloud/issues"
+  },
+  "homepage": "https://github.com/skeswa/crowdcloud#readme",
+  "dependencies": {
+    "body-parser": "^1.13.3",
+    "express": "^4.13.3",
+    "express-session": "^1.11.3",
+    "morgan": "^1.6.1"
+  }
+}

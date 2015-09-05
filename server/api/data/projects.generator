@@ -1,0 +1,25 @@
+[
+  '{{repeat(50)}}',
+  {
+    _id: '{{objectId()}}',
+    index: '{{index()}}',
+    creator: {
+      name: '{{firstName()}} {{surname()}}',
+      picture: 'http://lorempixel.com/200/200/people/'
+    },
+    currentUnitsPerDay: '{{floating(100, 200)}}',
+    targetUnitsPerDay: '{{integer(250, 400)}}',
+    picture: 'http://lorempixel.com/1000/400/',
+    leadContributor: {
+      name: '{{firstName()}} {{surname()}}',
+      picture: 'http://lorempixel.com/200/200/people/',
+      minutesPerDay: '{{floating(15, 35)}}'
+    },
+    name: '{{company().toUpperCase()}}',
+    description: '{{lorem(1, "paragraphs")}}',
+    tags: [
+      '{{repeat(7)}}',
+      '{{lorem(1, "words")}}'
+    ]
+  }
+]
