@@ -14,7 +14,7 @@ app.use(session({
   saveUninitialized:  false,
   secret: 'This is a shitty, very unsecret secret'
 }));
-app.use('/static', express.static(path.join('..', 'client')));
+app.use('/static', express.static(path.join(__dirname, '..', 'client')));
 app.use('/api', bodyParser.json());
 app.use('/api', bodyParser.urlencoded({ extended: true }));
 

@@ -1,0 +1,20 @@
+{
+  "name": "crowdcloud",
+  "version": "0.0.0",
+  "homepage": "https://github.com/skeswa/crowdcloud",
+  "authors": [
+    "Sandile Keswa <me@sandile.io>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "Materialize": "materialize#~0.97.0",
+    "backbone": "~1.2.3"
+  }
+}
