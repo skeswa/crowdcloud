@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 var ObjectId = mongoose.Schema.ObjectId;
 
-mongoose.connect('mongodb://localhost/crowdcloud');
+mongoose.connect('mongodb://127.0.0.1/crowdcloud');
 
 var User = mongoose.model('User', {
   name:           String,
@@ -10,7 +10,7 @@ var User = mongoose.model('User', {
   cert:           String,
   picture:        String,
   monthlyCap:     Number,
-  projects:       [ { type: ObjectId, ref: 'Project' } ]
+  projects:       [ { type: ObjectId, ref: 'Project' } ],
   contributions:  Object
 });
 

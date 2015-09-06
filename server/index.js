@@ -1,6 +1,7 @@
 var path        = require('path');
 var express     = require('express');
 var morgan      = require('morgan');
+var passport    = require('passport');
 var bodyParser  = require('body-parser');
 var session     = require('express-session');
 
@@ -15,10 +16,13 @@ app.use(session({
   secret: 'This is a shitty, very unsecret secret'
 }));
 app.use('/static', express.static(path.join(__dirname, '..', 'client')));
+app.use(passport.initialize());
+app.use(passport.session());
 app.use('/api', bodyParser.json());
 app.use('/api', bodyParser.urlencoded({ extended: true }));
 
 // Routes
+require('./api/data')(app);
 require('./api/auth')(app);
 require('./api/assets')(app);
 require('./api/projects')(app);
