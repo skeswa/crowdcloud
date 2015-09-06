@@ -1,3 +1,3 @@
-var events = requrie('events');
+var events = require('events');
 
-module.exports = new events.Emitter();
+module.exports = new events.EventEmitter();
