@@ -6,6 +6,7 @@ var APP_HTML    = fs.readFileSync(path.join(__dirname, '..', '..', 'client', 'ht
 var PROJECT_HTML = fs.readFileSync(path.join(__dirname, '..', '..', 'client', 'html', 'projects.html'));
 var VIEW_HTML = fs.readFileSync(path.join(__dirname, '..', '..', 'client', 'html', 'view.html'));
 var MYPROJECT_HTML = fs.readFileSync(path.join(__dirname, '..', '..', 'client', 'html', 'myprojects.html'));
+var OWNPROJECT_HTML = fs.readFileSync(path.join(__dirname, '..', '..', 'client', 'html', 'ownproject.html'));
 
 module.exports = function(app) {
   app.get('/', function(req, res) {
@@ -26,5 +27,9 @@ module.exports = function(app) {
 
   app.get('/view/:id', function(req, res) {
     return res.status(200).set('Content-Type', 'text/html').send(VIEW_HTML);
+  });
+
+  app.get('/myprojects/:id', function(req, res) {
+    return res.status(200).set('Content-Type', 'text/html').send(OWNPROJECT_HTML);
   });
 };

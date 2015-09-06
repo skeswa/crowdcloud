@@ -1,25 +1,35 @@
 $(document).ready(function() {
     
-    var ProjectCard = Backbone.Model.extend({});
+	var ProjectCard = Backbone.Model.extend({});
 
-    var ProfileView = Backbone.View.extend({
+	var ProfileView = Backbone.View.extend({
 
         el: $('#masonry-grid'),
 
         tagName: 'div',
 
-                template:  '<a class="grid-link" href="/myprojects/{{_id}}">'
+        template:  '<a class="grid-link" href="/view/{{_id}}">'
                     + '<div class="grid-item">' 
                         + '<div class="card">'
-                            + '<div class="card-image">'
-                                + '<img src="{{picture}}">'
+                        	+ '<div class="card-image">'
+                            	+ '<img src="{{picture}}">'
                                 + '<span class="card-title" id="cardImage">{{name}}</span>'
-                            + '</div>'
+                          	+ '</div>'
                             + '<div class="card-content">'
-                                + '<div class="progress-bar" style="margin-bottom: 13px; margin-top: 0px;">'
+                                +  '<p class="description">{{description}}</p>'
+                                + '<div class="progress-bar">'
                                 + '<span class="progress-text">{{currentUnitsPerDay}} computing hours out of {{targetUnitsPerDay}}!</span>'
                                 + '<progress value="{{currentUnitsPerDay}}" max="{{targetUnitsPerDay}}">'
                             + '</div>'
+                                + '<div id="author">'
+                                +   '<img class="circle responsive-img author-img" src="{{creator.picture}}">'
+                                +   '<p class="author-name">{{creator.name}}</p>'
+                                + '</div>'
+                            	+ '<div class="tags">'
+                            		+ '{{#tags}}'
+                            			+ 	'<span class="badge {{.}}">{{.}}</span>'
+                            		+ '{{/tags}}'
+                            	+ '</div>'
                         + '</div>'      
                     + '</div>'
                     + '</a>',
@@ -36,8 +46,8 @@ $(document).ready(function() {
 
     console.log("document ready");
     $.ajax({
-        type: "GET",
-        url: "/api/myprojects",
+    	type: "GET",
+    	url: "/api/projects",
         complete: function() {
             var msnry = new Masonry('#masonry-grid', {
                 gutter: 15,
@@ -54,13 +64,13 @@ $(document).ready(function() {
         }
     })
     .done(function(body) {
-        var data = body;
-        for(var i in data) {
-            var projectCard = new ProjectCard(data[i]);
-            profileView = new ProfileView({model: projectCard});
-        }   
+    	var data = body;
+    	for(var i in data) {
+    		var projectCard = new ProjectCard(data[i]);
+    		profileView = new ProfileView({model: projectCard});
+    	}  	
     })
     .fail(function() {
-        console.log("Request has failed")
+    	console.log("Request has failed")
     });
 });
