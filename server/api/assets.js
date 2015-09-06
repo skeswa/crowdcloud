@@ -19,7 +19,7 @@ module.exports = function(app) {
     return res.status(200).set('Content-Type', 'text/html').send(PROJECT_HTML);
   });
 
-  app.get('/view', function(req, res) {
+  app.get('/view/:id', function(req, res) {
     return res.status(200).set('Content-Type', 'text/html').send(VIEW_HTML);
   });
 };
