@@ -1,4 +1,4 @@
-var socket;
+//var socket = new io.Socket();
 
 $(document).ready(function() {
     var OwnProjectView = Backbone.View.extend({
@@ -33,7 +33,9 @@ $(document).ready(function() {
     });
 });
 
-socket = io.connect()
+var socket = io.connect("http://localhost");
+
+//socket.connect("http://localhost", { autoConnect: true});
 
 socket.on("connect", function () {
     app.set("connected", true)

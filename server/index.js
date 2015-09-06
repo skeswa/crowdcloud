@@ -12,6 +12,7 @@ var buildEmitter = require('./buildemitter');
 // Server
 var app       = express();
 var server    = require('http').Server(app);
+var io        = require('socket.io')(server);
 
 // Middleware
 app.use(morgan('dev'));
@@ -35,14 +36,15 @@ require('./api/assets')(app);
 require('./api/projects')(app);
 
 // Start the server
-var port = process.env.PORT || 3000;
-var server = app.listen(port, function(err) {
+var port = process.env.PORT || 80;
+app.listen(port, function(err) {
   if (err) return console.error('Could not start server:', err);
   else return console.log('Server is listening on port', port);
 });
 
 // Create the socket server
 io.on('connection', function(socket) {
+console.log("connecting");
   buildEmitter.on('build', function(message) {
     socket.emit('build', message);
     socket.emit('cpu', (Math.random() * 100) + '%');
