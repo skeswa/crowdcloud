@@ -18,6 +18,7 @@ $(document).ready(function() {
                             + '<div class="card-content">'
                                 +  '<p class="description">{{description}}</p>'
                                 + '<div class="progress-bar">'
+                                + '<span class="progress-text">{{currentUnitsPerDay}} computing hours out of {{targetUnitsPerDay}}!</span>'
                                 + '<progress value="{{currentUnitsPerDay}}" max="{{targetUnitsPerDay}}">'
                             + '</div>'
                                 + '<div id="author">'

@@ -1,0 +1,31 @@
+.splash {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100%;
+	background: url('../img/splash.jpg') no-repeat center center; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+.container {
+	position: relative;
+}
+.splash-overlay {
+	position: absolute;
+	top: 64px;
+	bottom: 0;
+	right: 0;
+	left: 0;
+	background-color: rgba(255,255,255,0.7);
+}
+
+html {
+	overflow-x: hidden;
+}
+
+.fa-cloud::before {
+	margin-right: 5px;
+}
