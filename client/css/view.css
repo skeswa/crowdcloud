@@ -1,9 +1,9 @@
 h3 {
-	font-size: 36px;
+	font-size: 46px;
 	font-weight: 300;
 	text-align: center;	
 	margin-top: 51px;
-	margin-bottom: 14px;
+	margin-bottom: 35px;
 }
 
 #author p {
@@ -13,5 +13,85 @@ h3 {
 }
 
 #author {
-	text-align: center;
+	text-align: left;
+	margin-top: 20px;
+}
+
+#stats{
+	display: inline-block;
+	position: absolute;
+	margin-left: 35px;
+	margin-top: 35px;
+}
+
+.video {
+	display: inline-block;
+}
+
+#num-backers {
+	font-size: 45px;
+	font-weight: 500;
+	margin-top: 0px;
+	margin-bottom: 0px;
+}
+
+#num-units {
+	font-size: 45px;
+	font-weight: 500;	
+}
+
+#title-backers {
+	display: inline-block;
+}
+
+.content-wrapper {
+	position: relative;
+}
+.toast-success, .toast-fail {
+	background-color: #29B6F6;
+}
+
+.toast-success::before, .toast-fail::before {
+	margin-right: 5px;
+	font-family: FontAwesome;
+	font-weight: normal;
+	font-style: normal;
+	display: inline-block;
+	text-decoration: inherit;
+	content: "\F0C2";
+}
+
+#github-icon {
+	padding-right: 10px;
+}
+
+#github-button {
+	margin-top: 15px;
+}
+
+#author-img {
+	width: 50px;
+	height: 50px;
+	display: inline-block;	
+}
+
+#author-name {
+	display: inline-block;
+	font-weight: 500;
+	position: relative;
+	top: -10px;
+	left: 4px;
+	font-size: 21px;
+}
+
+#github-btn {
+	background-color: #a7a799;
+}
+
+#support-button {
+	margin-top: 20px;
+}
+
+#modal1 {
+	width: 400px;
 }
