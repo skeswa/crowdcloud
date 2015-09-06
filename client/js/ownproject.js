@@ -45,7 +45,7 @@ socket.on("connect", function () {
 socket.on("build", function (data) {
     //app.set("welcome.message", data.message)
     //app.set("welcome.version", data.version)
-    console.log("build", data);
+    console.log(data);
 })
 
 socket.on("cpu", function (data) {
