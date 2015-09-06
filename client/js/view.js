@@ -2,15 +2,17 @@ $(document).ready(function() {
     
     send = function() {
         var value = $('#inputId').val(); 
+        var docId = document.URL;
+        docId = docId.substring(27, docId.length);
         $.ajax({
-            type: 'GET',
-            url: 'api/donate/'+value,   
+            type: 'POST',
+            url: '/api/projects/'+docIs+'/back'   
         })
         .done(function() {
             Materialize.toast('Success: '+value+' credit contributed!', 4000, 'toast-success');
         })
         .fail(function() {
-            Materialize.toast('Success: '+value+' credit contributed!', 4000, 'toast-success');
+            Materialize.toast('Failed to contribute credit!', 4000, 'toast-fail');
         });   
     };
 
@@ -29,7 +31,7 @@ $(document).ready(function() {
                     + '</div>'
                   + '<div id="stats">'
                       + '<div>'
-                        + '<span id="num-backers">4 </span>'
+                        + '<span id="num-backers">{{backers}} </span>'
                         +  '<span id="title-backers">backers</span>'
                         + '</div>'
                         + '<div>'
