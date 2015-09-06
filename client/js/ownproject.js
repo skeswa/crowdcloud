@@ -7,8 +7,6 @@ $(document).ready(function() {
 
         tagName: 'div',
 
-        template: '<cats>{{welcome.message}}{{welcome.version}}</cats>',
-
         data: {
             welcome: {
                 message: "connecting...",
@@ -35,6 +33,7 @@ $(document).ready(function() {
 
 var socket = io.connect("http://localhost");
 
+
 //socket.connect("http://localhost", { autoConnect: true});
 
 socket.on("connect", function () {
@@ -43,8 +42,10 @@ socket.on("connect", function () {
 })
 
 socket.on("build", function (data) {
-    //app.set("welcome.message", data.message)
-    //app.set("welcome.version", data.version)
+    var temp = $("#terminal").html();
+    var temp = temp + "\n" + moment().format('YYYY-MM-DD h:mm:ss') + ": " + data.data;
+    $('#terminal').html(temp);
+    $('#terminal').scrollTop($("#terminal")[0].scrollHeight);
     console.log("build", data);
 })
 

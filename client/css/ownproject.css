@@ -1,0 +1,9 @@
+.terminal-output {
+	background-color: #eeeeee;
+	box-shadow: 0 4px 10px 0 rgba(0,0,0,0.16),0 4px 20px 0 rgba(0,0,0,0.12);
+	color: #29b6f6 !important;
+	max-height: 35vh;
+	overflow: auto;
+	word-wrap: break-word;
+	white-space: pre-wrap;
+}

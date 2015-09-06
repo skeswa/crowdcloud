@@ -3,10 +3,12 @@ $(document).ready(function() {
     send = function() {
         var value = $('#inputId').val(); 
         var docId = document.URL;
-        docId = docId.substring(27, docId.length);
+        docId = docId.substring(22, docId.length - 2);
+        var postUrl = '/api/projects/'+docId+'/back';
+        console.log(postUrl);
         $.ajax({
             type: 'POST',
-            url: '/api/projects/'+docIs+'/back'   
+            url: postUrl,   
         })
         .done(function() {
             Materialize.toast('Success: '+value+' credit contributed!', 4000, 'toast-success');
@@ -69,7 +71,7 @@ $(document).ready(function() {
 
     //get url
     var docId = document.URL;
-    docId = docId.substring(27, docId.length);
+    docId = docId.substring(22, docId.length);
 
     console.log(docId);
     $.ajax({
