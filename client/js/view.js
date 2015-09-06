@@ -2,8 +2,6 @@ $(document).ready(function() {
     
     send = function() {
         var value = $('#inputId').val(); 
-        var docId = document.URL;
-        docId = docId.substring(22, docId.length - 2);
         var postUrl = '/api/projects/'+docId+'/back';
         console.log(postUrl);
         $.ajax({
