@@ -4,11 +4,12 @@ $(document).ready(function() {
 
 	var ProfileView = Backbone.View.extend({
 
-        el: $('#mason-container'),
+        el: $('#masonry-grid'),
 
         tagName: 'div',
 
-        template: '<div class="mason-image">' 
+        template:  '<a class="grid-link" href="/view/{{_id}}">'
+                    + '<div class="grid-item">' 
                         + '<div class="card">'
                         	+ '<div class="card-image">'
                             	+ '<img src="{{picture}}">'
@@ -16,20 +17,21 @@ $(document).ready(function() {
                           	+ '</div>'
                             + '<div class="card-content">'
                                 +  '<p class="description">{{description}}</p>'
-                            	+ '<div id="author">'
-                            	+	'<img class="circle responsive-img author-img" src="{{creator.picture}}">'
-                            	+	'<p class="author-name">{{creator.name}}</p>'
-                            	+ '</div>'
+                                + '<div class="progress-bar">'
+                                + '<progress value="{{currentUnitsPerDay}}" max="{{targetUnitsPerDay}}">'
+                            + '</div>'
+                                + '<div id="author">'
+                                +   '<img class="circle responsive-img author-img" src="{{creator.picture}}">'
+                                +   '<p class="author-name">{{creator.name}}</p>'
+                                + '</div>'
                             	+ '<div class="tags">'
                             		+ '{{#tags}}'
                             			+ 	'<span class="badge {{.}}">{{.}}</span>'
                             		+ '{{/tags}}'
                             	+ '</div>'
-                            	+ '<div class="progress-bar">'
-                            		+ '<progress value="{{currentUnitsPerDay}}" max="{{targetUnitsPerDay}}">'
-                            + '</div>'
                         + '</div>'      
-                    + '</div>',
+                    + '</div>'
+                    + '</a>',
 
         initialize: function() {
             this.render();
@@ -44,14 +46,26 @@ $(document).ready(function() {
     console.log("document ready");
     $.ajax({
     	type: "GET",
-    	url: "/api/projects"
+    	url: "/api/projects",
+        complete: function() {
+            var msnry = new Masonry('#masonry-grid', {
+                gutter: 15,
+                itemSelector: '.grid-item',
+                isAnimated: true,
+                columnWidth: 300,
+                isFitWidth: true
+            });
+
+            setInterval(function(){
+                msnry.reloadItems();    
+                msnry.layout();
+            },500);
+        }
     })
     .done(function(body) {
     	var data = body;
-    	console.log(body);
     	for(var i in data) {
     		var projectCard = new ProjectCard(data[i]);
-    		console.log(projectCard);
     		profileView = new ProfileView({model: projectCard});
     	}  	
     })
