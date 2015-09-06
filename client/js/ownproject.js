@@ -7,8 +7,6 @@ $(document).ready(function() {
 
         tagName: 'div',
 
-        template: '<cats>{{welcome.message}}{{welcome.version}}</cats>',
-
         data: {
             welcome: {
                 message: "connecting...",
@@ -43,8 +41,8 @@ socket.on("connect", function () {
 })
 
 socket.on("build", function (data) {
-    //app.set("welcome.message", data.message)
-    //app.set("welcome.version", data.version)
+    var temp = $("#terminal").text();
+    var temp = temp + '</br>' + moment().format('YYYY-MM-DD h:mm:ss'); + ": " + data;
     console.log("build", data);
 })
 
