@@ -1,5 +1,18 @@
-#project-view-anchor {
-	margin-top: 25px;
+.grid-item {
+	width: 300px;
+	margin-bottom: 15px;
+}
+
+#masonry-grid {
+	margin: 0 auto;
+}
+
+.progress-bar {
+	margin-top: 10px;
+}
+
+nav {
+	margin-bottom: 15px;
 }
 
 .card {
@@ -8,6 +21,7 @@
 	right: 0;
 	top: 0;
 	background-color: rgb(0,0,0,0.4);
+	margin: 0;
 }
 
 .card-title {
@@ -30,6 +44,7 @@
 	color: #444444;
     font-weight: 300;
     padding-top: 7px;
+    padding-bottom: 7px;
     letter-spacing: .5px;
     font-size: 14px;
 }
@@ -44,7 +59,6 @@
 }
 
 .description {
-	height: 114px;
 	overflow: auto;
 }
 
@@ -78,6 +92,30 @@
 	box-shadow: 0 1px 2.5px 0 rgba(0,0,0,0.16),0 1px 5px 0 rgba(0,0,0,0.12)
 }
 
-.mason-image {
-	width: 200px;
+@media (min-width:1500px){
+	#masonry-grid .gutter-sizer{width:4%;}
+	#masonry-grid .grid-item{width:22%;margin-bottom:4%;}
+}
+
+@media (max-width:1200px){
+	#masonry-grid .gutter-sizer{width:4%;}
+	#masonry-grid .grid-item{width:48%;}
+}
+
+@media (max-width:768px){
+	#masonry-grid .gutter-sizer{width:0%;}
+	#masonry-grid .grid-item{width:100%;}
+}
+.grid-link {
+	color: #444444;;
+}
+
+.grid-link .card {
+	transition: transform .15s, box-shadow .15s;
+}
+
+.grid-link:focus .card, .grid-link:hover .card {
+	outline: 0;
+    transform: scale(1.04);
+    box-shadow: 0 4px 10px 0 rgba(0,0,0,0.16),0 4px 20px 0 rgba(0,0,0,0.12);
 }

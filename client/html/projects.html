@@ -42,7 +42,9 @@
         </nav>
         <!-- Filter Buttons -->
         <div id="page-container" class="container">
-            <div id="mason-container"></div>
+            <div id="masonry-grid">
+                <div class="gutter-sizer"></div>
+            </div>
                     <!-- Example Card
                     <div class="col s12 m4">
                         <div class="card">
@@ -65,14 +67,5 @@
 
         <!-- Scripts -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/masonry/3.3.2/masonry.pkgd.js"></script>
-
-        <script>
-            var $container = $('#mason-container');
-            $container.masonry({
-                 // options
-                 itemSelector: '.mason-image',
-                 columnWidth: 200
-            });
-        </script>
     </body>
 </html>
