@@ -73,6 +73,7 @@ module.exports = function(app) {
       input     : proc.stdout,
       terminal  : false
     }).on('line', function(line) {
+      console.log("stuff");
       buildEmitter.emit('build', {
         projectId:  req.params.id,
         data:       line
