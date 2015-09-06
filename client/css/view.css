@@ -47,6 +47,19 @@ h3 {
 .content-wrapper {
 	position: relative;
 }
+.toast-success, .toast-fail {
+	background-color: #29B6F6;
+}
+
+.toast-success::before, .toast-fail::before {
+	margin-right: 5px;
+	font-family: FontAwesome;
+	font-weight: normal;
+	font-style: normal;
+	display: inline-block;
+	text-decoration: inherit;
+	content: "\F0C2";
+}
 
 #github-icon {
 	padding-right: 10px;
@@ -77,4 +90,8 @@ h3 {
 
 #support-button {
 	margin-top: 20px;
+}
+
+#modal1 {
+	width: 400px;
 }
