@@ -29,7 +29,7 @@ module.exports = function(app) {
     var limit   = req.query.limit || 20;
     var tag     = req.query.tag;
 
-    var query = { '_id': req.params['_id'] };
+    var query = { '_id': req.params['id'] };
 
     Project.findOne(query)
       .then(function(result) {
