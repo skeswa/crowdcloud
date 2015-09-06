@@ -1,9 +1,9 @@
 h3 {
-	font-size: 36px;
-	font-weight: 300;
+	font-size: 46px;
+	font-weight: 400;
 	text-align: center;	
 	margin-top: 51px;
-	margin-bottom: 14px;
+	margin-bottom: 35px;
 }
 
 #author p {
@@ -14,7 +14,7 @@ h3 {
 
 #author {
 	text-align: center;
-	margin-bottom: 35px;
+	margin-top: 20px;
 }
 
 #stats{
@@ -56,3 +56,23 @@ h3 {
 	margin-top: 15px;
 }
 
+#author-img {
+	width: 50px;
+	height: 50px;
+	display: inline-block;	
+}
+
+#author-name {
+	display: inline-block;
+	font-weight: 500;
+	position: relative;
+	top: -10px;
+}
+
+#github-btn {
+	background-color: #a7a799;
+}
+
+#support-button {
+	margin-top: 20px;
+}
