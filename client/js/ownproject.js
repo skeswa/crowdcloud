@@ -7,6 +7,8 @@ $(document).ready(function() {
 
         tagName: 'div',
 
+        template: '<canvas id="myChart" width="500" height="500"></canvas>',
+
         data: {
             welcome: {
                 message: "connecting...",
@@ -22,6 +24,9 @@ $(document).ready(function() {
                 socket.emit("ping", this.get("text"))
                 this.set("text", "")
              })
+            setTimeOut(function() {
+                this.chart();
+            }, 5000);
         },
 
         render: function() {
@@ -39,7 +44,9 @@ var socket = io.connect("http://localhost");
 socket.on("connect", function () {
     //app.set("connected", true)
     console.log("connected");
-})
+}),
+
+
 
 socket.on("build", function (data) {
     var temp = $("#terminal").html();
@@ -50,7 +57,13 @@ socket.on("build", function (data) {
 })
 
 socket.on("cpu", function (data) {
-    //var messages = app.get("messages")
-    //messages.push(data)
+    var cpu = data.data;
+    var not = 100 - data.data;
+    cpuUpdate(not, cpu);
     console.log("cpu");
+    
+})
+
+socket.on("memory", function (data) {
+    console.log("memory");
 })
