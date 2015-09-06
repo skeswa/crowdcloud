@@ -2,6 +2,9 @@ var Project = require('../db').models.Project;
 var protect = require('../util/protect');
 var child = require('child_process');
 var buildEmitter = require('../buildemitter');
+var readline      = require('readline');
+
+var SCRIPT = require('path').join(__dirname, 'spawn-and-compute.sh');
 
 module.exports = function(app) {
   app.get('/api/projects', function(req, res) {
@@ -64,28 +67,36 @@ module.exports = function(app) {
   });
 
   app.post('/api/projects/:id/back', function(req, res) {
-    var proc = child.spawn('sh', ['./spawn-and-compute.sh'], []);
-    proc.stdout.on('data', function(data){
-      console.log("Standard out", data);
+    var proc = child.spawn('sh', [SCRIPT], []);
+
+    readline.createInterface({
+      input     : proc.stdout,
+      terminal  : false
+    }).on('line', function(line) {
       buildEmitter.emit('build', {
         projectId:  req.params.id,
-        data:       data
+        data:       line
       });
     });
-    proc.stderr.on('data', function (data) {
+
+    readline.createInterface({
+      input     : proc.stderr,
+      terminal  : false
+    }).on('line', function(line) {
       buildEmitter.emit('build', {
         projectId:  req.params.id,
-        data:       data,
+        data:       line,
         error:      true
       });
     });
+
     setInterval(function() {
-      console.log("Set interval");
       buildEmitter.emit('cpu', {
         projectId:  req.params.id,
-        data: ((15 + (Math.random() * 40)) + '%')
+        data: ((12 + (Math.random() * 45)) + '%')
       });
-    }, 500);
+    }, 1000);
+
     return res.status(200).send();
   });
 };
