@@ -31,7 +31,7 @@ $(document).ready(function() {
                     + '</div>'
                   + '<div id="stats">'
                       + '<div>'
-                        + '<span id="num-backers">4 </span>'
+                        + '<span id="num-backers">{{backers}} </span>'
                         +  '<span id="title-backers">backers</span>'
                         + '</div>'
                         + '<div>'
