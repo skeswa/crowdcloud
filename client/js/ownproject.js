@@ -47,7 +47,6 @@ socket.on("build", function (data) {
     $('#terminal').html(temp);
     $('#terminal').scrollTop($("#terminal")[0].scrollHeight);
     console.log("build", data);
-    
 })
 
 socket.on("cpu", function (data) {
