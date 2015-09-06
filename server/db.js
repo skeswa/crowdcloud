@@ -5,17 +5,16 @@ mongoose.connect('mongodb://127.0.0.1/crowdcloud');
 
 var User = mongoose.model('User', {
   name:           String,
-  email:          String,
-  password:       String,
+  liveId:         String,
   cert:           String,
   picture:        String,
   monthlyCap:     Number,
-  projects:       [ { type: ObjectId, ref: 'Project' } ],
   contributions:  Object
 });
 
 var Project = mongoose.model('Project', {
   creator:  {
+    liveId:   String,
     name:     String,
     picture:  String,
   },
