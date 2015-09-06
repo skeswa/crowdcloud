@@ -50,8 +50,7 @@
           <pre id="terminal" class="terminal-output"></pre> 
        </div>
        <div id="ctn" class="container">
-           <canvas id="myChart" width="250" height="250"></canvas>
-           <canvas id="myChart2" width="250" height="250"></canvas>
+
        </div>
 
         <!-- Scripts -->
@@ -60,50 +59,6 @@
            var now =  moment().format('YYYY-MM-DD h:mm:ss');
            var string = now + ": Initializing...";
            $("#terminal").text(string);
-        </script>
-        <script>
-        var ctx = document.getElementById("myChart").getContext("2d");
-        function cpuUpdate(not, available) {
-                
-
-        var cpudata = [
-             {
-                value: not,
-                color:"#F7464A",
-                highlight: "#FF5A5E",
-                label: "In-Use"
-            },
-            {
-                value: available,
-                color: "#51af65",
-                highlight: "#51af65",
-                label: "Available"
-            }  
-        ]
-        var myCPUChart = new Chart(ctx).Pie(cpudata, {});
-        myCPUChart.update();
-    };
-
-    cpuUpdate(30, 70);
-
-        var ctx2 = document.getElementById("myChart2").getContext('2d');
-
-            var memorydata = [
-            {
-                value: 22,
-                color:"#F7464A",
-                highlight: "#FF5A5E",
-                label: "In-Use"
-            },
-            {
-                value: 100,
-                color: "#51af65",
-                highlight: "#51af65",
-                label: "Available"
-            }
-            ]
-            
-            var myMemoryChart = new Chart(ctx2).Pie(memorydata, {});
         </script>
     </body>
 </html>
