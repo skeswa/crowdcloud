@@ -95,7 +95,14 @@ module.exports = function(app) {
     setInterval(function() {
       buildEmitter.emit('cpu', {
         projectId:  req.params.id,
-        data: ((12 + (Math.random() * 45)) + '%')
+        data: (12 + (Math.random() * 45))
+      });
+    }, 1000);
+
+    setInterval(function() {
+      buildEmitter.emit('memory', {
+        projectId:  req.params.id,
+        data: (8 + (Math.random() * 3))
       });
     }, 1000);
 

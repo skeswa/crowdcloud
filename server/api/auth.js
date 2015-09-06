@@ -31,7 +31,7 @@ var creds = ['0000000048168AED', '8fphAc4mpFTg1Mn09iHi3CvqczA9sf2c'];
 passport.use(new WindowsLiveStrategy({
     clientID: creds[0],
     clientSecret: creds[1],
-    callbackURL: 'http://sandile.ngrok.com/api/auth/callback'
+    callbackURL: 'http://cloudsource.pw/api/auth/callback'
   }, function(accessToken, refreshToken, profile, done) {
     User.findOne({
       liveId: profile.id
@@ -48,6 +48,6 @@ module.exports = function(app) {
 
   app.get('/api/auth/callback', passport.authenticate('windowslive', { failureRedirect: '/login' }), function(req, res) {
     // Successful authentication, redirect home.
-    res.redirect('/');
+    res.redirect('/projects');
   });
 };
