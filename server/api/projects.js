@@ -76,7 +76,8 @@ module.exports = function(app) {
       console.log("stuff");
       buildEmitter.emit('build', {
         projectId:  req.params.id,
-        data:       line
+        data:       line,
+        error:      false
       });
     });
 
