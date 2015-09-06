@@ -3,6 +3,8 @@ var path  = require('path');
 
 var LOGIN_HTML  = fs.readFileSync(path.join(__dirname, '..', '..', 'client', 'html', 'login.html'));
 var APP_HTML    = fs.readFileSync(path.join(__dirname, '..', '..', 'client', 'html', 'app.html'));
+var PROJECT_HTML = fs.readFileSync(path.join(__dirname, '..', '..', 'client', 'html', 'projects.html'));
+var VIEW_HTML = fs.readFileSync(path.join(__dirname, '..', '..', 'client', 'html', 'view.html'));
 
 module.exports = function(app) {
   app.get('/', function(req, res) {
@@ -11,5 +13,13 @@ module.exports = function(app) {
 
   app.get('/login', function(req, res) {
     return res.status(200).set('Content-Type', 'text/html').send(LOGIN_HTML);
+  });
+
+  app.get('/projects', function(req, res) {
+    return res.status(200).set('Content-Type', 'text/html').send(PROJECT_HTML);
+  });
+
+  app.get('/view', function(req, res) {
+    return res.status(200).set('Content-Type', 'text/html').send(VIEW_HTML);
   });
 };
