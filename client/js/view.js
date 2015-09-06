@@ -71,7 +71,7 @@ $(document).ready(function() {
 
     //get url
     var docId = document.URL;
-    docId = docId.substring(22, docId.length);
+    docId = docId.substring(27, docId.length);
 
     console.log(docId);
     $.ajax({
