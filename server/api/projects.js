@@ -1,4 +1,5 @@
 var Project = require('../db').models.Project;
+var protect = require('../util/protect');
 
 module.exports = function(app) {
   app.get('/api/projects', function(req, res) {
@@ -20,7 +21,7 @@ module.exports = function(app) {
       })
       .catch(function(err) {
         return res.status(500).send(err);
-      }); 
+      });
   });
 
   app.get('/api/projects/:id', function(req, res) {
@@ -32,6 +33,27 @@ module.exports = function(app) {
 
     Project.findOne(query)
       .then(function(result) {
+        return res.status(200).json(result);
+      })
+      .catch(function(err) {
+        return res.status(500).send(err);
+      }); 
+  });
+
+  app.get('/api/myprojects', function(req, res) {
+    var query;
+    if (req && req.session && req.session.user) {
+      query = {
+        'creator.liveId': req.session.user
+      };
+    } else {
+      query = {
+        'creator.name': { $regex: /.*Mcc.*/ }
+      };
+    }
+
+    Project.find(query)
+      .then(function(results) {
         return res.status(200).json(results);
       })
       .catch(function(err) {

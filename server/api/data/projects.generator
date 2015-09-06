@@ -7,6 +7,7 @@
     },
     currentUnitsPerDay: '{{floating(100, 200)}}',
     targetUnitsPerDay: '{{integer(250, 400)}}',
+    backers: '{{integer(200, 1100)}}',
     picture: 'http://lorempixel.com/600/400/',
     leadContributor: {
       name: '{{firstName()}} {{surname()}}',

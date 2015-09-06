@@ -1,9 +1,10 @@
-var path        = require('path');
-var express     = require('express');
-var morgan      = require('morgan');
-var passport    = require('passport');
-var bodyParser  = require('body-parser');
-var session     = require('express-session');
+var path          = require('path');
+var express       = require('express');
+var morgan        = require('morgan');
+var passport      = require('passport');
+var bodyParser    = require('body-parser');
+var cookieParser  = require('cookie-parser')
+var session       = require('express-session');
 
 // Server
 var app       = express();
@@ -18,6 +19,7 @@ app.use(session({
 app.use('/static', express.static(path.join(__dirname, '..', 'client')));
 app.use(passport.initialize());
 app.use(passport.session());
+app.use(cookieParser());
 app.use('/api', bodyParser.json());
 app.use('/api', bodyParser.urlencoded({ extended: true }));
 

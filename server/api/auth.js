@@ -16,34 +16,38 @@ passport.deserializeUser(function(id, done) {
     });
 });
 
+function createUser(profile, callback) {
+  User.create({
+    name:           profile.displayName,
+    liveId:         profile.id,
+    cert:           'this is a fake cert',
+    picture:        'http://api.randomuser.me/portraits/men/10.jpg',
+    monthlyCap:     120.00
+  }, callback);
+}
+
 var creds = ['0000000048168AED', '8fphAc4mpFTg1Mn09iHi3CvqczA9sf2c'];
+
 passport.use(new WindowsLiveStrategy({
     clientID: creds[0],
     clientSecret: creds[1],
-    callbackURL: 'http://127.0.0.1/api/auth/callback',
-    passReqToCallback : true
-  }, function(req, email, password, done) { 
-    // check in mongo if a user with username exists or not
-    User.findOne({ 'email' :  email }, function(err, user) {
-      // In case of any error, return using the done method
-      if (err) return done(err);
-      // Username does not exist, log error & redirect back
-      if (!user) {
-        console.log('User Not Found with email', email);
-        return done(null, false, req.flash('message', 'User Not found.'));                 
-      }
-      // User exists but wrong password, log the error 
-      if (!isValidPassword(user, password)){
-        console.log('Invalid Password');
-        return done(null, false, 
-            req.flash('message', 'Invalid Password'));
-      }
-      // User and password both match, return user from 
-      // done method which will be treated like success
-      return done(null, user);
+    callbackURL: 'http://sandile.ngrok.com/api/auth/callback'
+  }, function(accessToken, refreshToken, profile, done) {
+    User.findOne({
+      liveId: profile.id
+    }).then(function(user) {
+      if (!user) createUser(profile, done);
+      else done(null, user);
+    }).catch(function() {
+      createUser(profile, done);
     });
 }));
 
 module.exports = function(app) {
+  app.get('/api/authenticate', passport.authenticate('windowslive', { scope: ['wl.signin', 'wl.basic'] }));
 
+  app.get('/api/auth/callback', passport.authenticate('windowslive', { failureRedirect: '/login' }), function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('/');
+  });
 };
