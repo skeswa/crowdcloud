@@ -3,7 +3,8 @@ var express       = require('express');
 var morgan        = require('morgan');
 var passport      = require('passport');
 var bodyParser    = require('body-parser');
-var cookieParser  = require('cookie-parser')
+var cookieParser  = require('cookie-parser');
+var favicon       = require('serve-favicon');
 var session       = require('express-session');
 
 // Server
@@ -17,6 +18,7 @@ app.use(session({
   secret: 'This is a shitty, very unsecret secret'
 }));
 app.use('/static', express.static(path.join(__dirname, '..', 'client')));
+app.use(favicon(__dirname + '/favicon.ico'));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(cookieParser());
