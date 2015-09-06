@@ -60,4 +60,8 @@ module.exports = function(app) {
         return res.status(500).send(err);
       }); 
   });
+
+  app.post('/api/projects/:id/back', function(req, res) {
+    return res.status(200).send();
+  });
 };
