@@ -37,7 +37,7 @@ require('./api/projects')(app);
 
 // Start the server
 var port = process.env.PORT || 80;
-app.listen(port, function(err) {
+server.listen(port, function(err) {
   if (err) return console.error('Could not start server:', err);
   else return console.log('Server is listening on port', port);
 });

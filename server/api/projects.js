@@ -66,6 +66,7 @@ module.exports = function(app) {
   app.post('/api/projects/:id/back', function(req, res) {
     var proc = child.spawn('sh', ['./spawn-and-compute.sh'], []);
     proc.stdout.on('data', function(data){
+      console.log("Standard out", data);
       buildEmitter.emit('build', {
         projectId:  req.params.id,
         data:       data
@@ -79,6 +80,7 @@ module.exports = function(app) {
       });
     });
     setInterval(function() {
+      console.log("Set interval");
       buildEmitter.emit('cpu', {
         projectId:  req.params.id,
         data: ((15 + (Math.random() * 40)) + '%')

@@ -38,15 +38,18 @@ var socket = io.connect("http://localhost");
 //socket.connect("http://localhost", { autoConnect: true});
 
 socket.on("connect", function () {
-    app.set("connected", true)
+    //app.set("connected", true)
+    console.log("connected");
 })
 
 socket.on("build", function (data) {
-    app.set("welcome.message", data.message)
-    app.set("welcome.version", data.version)
+    //app.set("welcome.message", data.message)
+    //app.set("welcome.version", data.version)
+    console.log("build", data);
 })
 
 socket.on("cpu", function (data) {
-    var messages = app.get("messages")
-    messages.push(data)
+    //var messages = app.get("messages")
+    //messages.push(data)
+    console.log("cpu");
 })
