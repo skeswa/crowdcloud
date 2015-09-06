@@ -7,8 +7,11 @@ var cookieParser  = require('cookie-parser');
 var favicon       = require('serve-favicon');
 var session       = require('express-session');
 
+var buildEmitter = require('./buildemitter');
+
 // Server
 var app       = express();
+var server    = require('http').Server(app);
 
 // Middleware
 app.use(morgan('dev'));
@@ -33,7 +36,16 @@ require('./api/projects')(app);
 
 // Start the server
 var port = process.env.PORT || 3000;
-app.listen(port, function(err) {
+var server = app.listen(port, function(err) {
   if (err) return console.error('Could not start server:', err);
   else return console.log('Server is listening on port', port);
 });
+
+// Create the socket server
+io.on('connection', function(socket) {
+  buildEmitter.on('build', function(message) {
+    socket.emit('build', message);
+    socket.emit('cpu', (Math.random() * 100) + '%');
+  });
+});
+

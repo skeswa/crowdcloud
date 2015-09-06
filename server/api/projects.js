@@ -1,5 +1,7 @@
 var Project = require('../db').models.Project;
 var protect = require('../util/protect');
+var child = require('child_process');
+var buildEmitter = require('../buildemitter');
 
 module.exports = function(app) {
   app.get('/api/projects', function(req, res) {
@@ -62,6 +64,26 @@ module.exports = function(app) {
   });
 
   app.post('/api/projects/:id/back', function(req, res) {
+    var proc = child.spawn('sh', ['./spawn-and-compute.sh'], []);
+    proc.stdout.on('data', function(data){
+      buildEmitter.emit('build', {
+        projectId:  req.params.id,
+        data:       data
+      });
+    });
+    proc.stderr.on('data', function (data) {
+      buildEmitter.emit('build', {
+        projectId:  req.params.id,
+        data:       data,
+        error:      true
+      });
+    });
+    setInterval(function() {
+      buildEmitter.emit('cpu', {
+        projectId:  req.params.id,
+        data: ((15 + (Math.random() * 40)) + '%')
+      });
+    }, 500);
     return res.status(200).send();
   });
 };
