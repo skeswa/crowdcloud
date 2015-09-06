@@ -26,6 +26,7 @@ var Project = mongoose.model('Project', {
     picture:        String,
     unitsPerDay:    Number
   },
+  backers:      Number,
   name:         String,
   description:  String,
   repo:         String,
