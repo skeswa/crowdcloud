@@ -15,3 +15,13 @@
     align-content: center;
     align-items: center;
 }
+
+.memory-container, .cpu-container {
+	height: 250px;
+	width: 250px;
+}
+
+.memory-number, .cpu-number {
+	font-size: 48px;
+	font-weight: 800;
+}
