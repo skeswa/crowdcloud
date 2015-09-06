@@ -1,0 +1,66 @@
+$(document).ready(function() {
+    
+    var ProjectCard = Backbone.Model.extend({});
+
+    var ProfileView = Backbone.View.extend({
+
+        el: $('#masonry-grid'),
+
+        tagName: 'div',
+
+                template:  '<a class="grid-link" href="/view/{{_id}}">'
+                    + '<div class="grid-item">' 
+                        + '<div class="card">'
+                            + '<div class="card-image">'
+                                + '<img src="{{picture}}">'
+                                + '<span class="card-title" id="cardImage">{{name}}</span>'
+                            + '</div>'
+                            + '<div class="card-content">'
+                                + '<div class="progress-bar" style="margin-bottom: 13px; margin-top: 0px;">'
+                                + '<span class="progress-text">{{currentUnitsPerDay}} computing hours out of {{targetUnitsPerDay}}!</span>'
+                                + '<progress value="{{currentUnitsPerDay}}" max="{{targetUnitsPerDay}}">'
+                            + '</div>'
+                        + '</div>'      
+                    + '</div>'
+                    + '</a>',
+
+        initialize: function() {
+            this.render();
+        },
+
+        render: function() {
+            this.$el.append((Mustache.render(this.template, this.model.toJSON())));
+            return this;
+        },
+    });
+
+    console.log("document ready");
+    $.ajax({
+        type: "GET",
+        url: "/api/myprojects",
+        complete: function() {
+            var msnry = new Masonry('#masonry-grid', {
+                gutter: 15,
+                itemSelector: '.grid-item',
+                isAnimated: true,
+                columnWidth: 300,
+                isFitWidth: true
+            });
+
+            setInterval(function(){
+                msnry.reloadItems();    
+                msnry.layout();
+            },500);
+        }
+    })
+    .done(function(body) {
+        var data = body;
+        for(var i in data) {
+            var projectCard = new ProjectCard(data[i]);
+            profileView = new ProfileView({model: projectCard});
+        }   
+    })
+    .fail(function() {
+        console.log("Request has failed")
+    });
+});
