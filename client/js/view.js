@@ -27,7 +27,7 @@ $(document).ready(function() {
         template:  '<h3 id="title">{{name}}</h3>'
                   + '<div class="content-wrapper">'
                     + '<div class="video">'
-                      + '<iframe width="650" height="400" src="//www.youtube.com/embed/Q8TXgCzxEnw?rel=0;autohide=1" frameborder="0" allowfullscreen></iframe>'
+                      + '<iframe width="650" height="400" src="https://www.youtube.com/embed/cHImelRScEA" frameborder="0" allowfullscreen></iframe>'
                     + '</div>'
                   + '<div id="stats">'
                       + '<div>'
