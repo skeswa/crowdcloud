@@ -42,8 +42,9 @@ socket.on("connect", function () {
 
 socket.on("build", function (data) {
     var temp = $("#terminal").text();
-    var temp = temp + '</br>' + moment().format('YYYY-MM-DD h:mm:ss'); + ": " + data;
-    console.log("build", data);
+    var temp = temp + '</br>' + moment().format('YYYY-MM-DD h:mm:ss') + ": " + data;
+    $("#terminal").text(temp)
+;    console.log("build", data);
 })
 
 socket.on("cpu", function (data) {
