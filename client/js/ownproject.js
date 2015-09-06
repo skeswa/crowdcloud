@@ -33,6 +33,7 @@ $(document).ready(function() {
 
 var socket = io.connect("http://localhost");
 
+
 //socket.connect("http://localhost", { autoConnect: true});
 
 socket.on("connect", function () {
@@ -41,10 +42,11 @@ socket.on("connect", function () {
 })
 
 socket.on("build", function (data) {
-    var temp = $("#terminal").text();
-    var temp = temp + '</br>' + moment().format('YYYY-MM-DD h:mm:ss') + ": " + data;
-    $("#terminal").text(temp)
-;    console.log("build", data);
+    var temp = $("#terminal").html();
+    var temp = temp + "\n" + moment().format('YYYY-MM-DD h:mm:ss') + ": " + data.data;
+    $('#terminal').html(temp);
+    $('#terminal').scrollTop($("#terminal")[0].scrollHeight);
+    console.log("build", data);
 })
 
 socket.on("cpu", function (data) {
