@@ -57,10 +57,10 @@ socket.on("build", function (data) {
 })
 
 socket.on("cpu", function (data) {
-    $(".cpu-number").text(data.data);
+    $(".cpu-number").text(data.data.toFixed(2) + '%');
     console.log(data.data)
 })
 
 socket.on("memory", function (data) {
-    $(".memory-number").text(data.data);
+    $(".memory-number").text(data.data.toFixed(2) + '%');
 })
