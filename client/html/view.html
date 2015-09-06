@@ -19,6 +19,7 @@
     <![endif]-->
   </head>
   <body>
+
     <nav class="light-blue lighten-1" role="navigation">
     <div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo"><i class="fa fa-cloud">Cloudsource</i></a>
       <ul class="right hide-on-med-and-down">
@@ -38,60 +39,25 @@
   </nav>
 
     <div id="ctn" class="container">
-      <!--
-        
-        <h3 id="title"> How to eat French Fries </h3>
-        
+    </div>
 
-        <div class="content-wrapper">
-        
-        <div class="video">
-          <iframe width="650" height="400" src="//www.youtube.com/embed/Q8TXgCzxEnw?rel=0;autohide=1" frameborder="0" allowfullscreen></iframe>
+    <div id="modal1" class="modal">
+      <div class="modal-content">
+        <div class="input-field col s12">
+          <input id="inputId" type="text" class="validate">
+          <label for="azure-credit">Azure Credit Amount</label>
         </div>
-        
-        <div id="stats">
-            <div>
-              <span id="num-backers">1,523</span>
-              <span id="title-backers">backers</span>
-            </div>
-            <div>
-              <span id="num-units">137.256</span>
-              <span id="title-target">/ 378 hours</span>  
-            </div>
-            <div id="github-button">
-              <a id="github-btn" class="waves-effect waves-light btn"><i id="github-icon" class="fa fa-github"></i>View on Githhub</a>
-            </div>
-            <div id="support-button">
-              <a id="support-btn" class="waves-effect waves-light btn">Back this project</a>
-            </div>
-            <div id="author">        
-              <img id="author-img" class="circle responsive-img author-img" src="http://assets3.thrillist.com/v1/image/763197/size/tl-horizontal_main/who-has-the-finest-fast-food-fries-we-rank-the-bests-and-the-busts">
-              <div id="author-name">
-                <p>Daniel Cadden</p>
-              </div>
-          </div>
-          </div>
-
-          <div>
-            <p class="">Hello all. 
-
-Thanks so much to everyone who helped us film series 7 of RHLSTP. 
-
-We are hoping to persuade some new people to help us make series 8 in the same way. There will be up to 20 episodes in this series (and we’ve remembered about VAT this time) so we need slightly more money. 
-
-Last time just over 1000 people raised over £30,000, so we are hoping that some of the other 150,000 listeners will feel that the show is worth preserving on video. 
-
-If you feel the 80 plus episodes you've had so far have been worth £1 or more, please consider just making a small donation. Or pay a bit (or a lot) more for one of these crazy rewards. 
-
-Your money will go towards paying the camera operators, George the incompetent sound guy, the editor, Chris Evans (not that one) and other production costs that add up to £2500 per episode (including VAT). We are really only looking to cover our costs so that the filmed version can continue. If we are unsuccessful we will continue the series in audio form only.
-
-</p>
-          </div>
-        </div>
-      -->
+      </div>
+      <div class="modal-footer">
+        <a href="#!" onClick="send()" class=" modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+        <a href="#!" class=" modal-action modal-close waves-effect waves-red btn-flat">Cancel</a>
       </div>
     </div>
+
+    </div>
+
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.0/js/materialize.min.js"></script>   
       <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.1.2/mustache.js"></script>
       <script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.3.3/underscore-min.js" type="text/javascript"></script>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/backbone.js/1.2.1/backbone.js" type="text/javascript"></script>

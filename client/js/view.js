@@ -1,5 +1,19 @@
 $(document).ready(function() {
     
+    send = function() {
+        var value = $('#inputId').val(); 
+        $.ajax({
+            type: 'GET',
+            url: 'api/donate/'+value,   
+        })
+        .done(function() {
+            Materialize.toast('Success: '+value+' credit contributed!', 4000, 'toast-success');
+        })
+        .fail(function() {
+            Materialize.toast('Success: '+value+' credit contributed!', 4000, 'toast-success');
+        });   
+    };
+
 	var ProjectCard = Backbone.Model.extend({});
 
 	var ProfileView = Backbone.View.extend({
@@ -23,10 +37,10 @@ $(document).ready(function() {
                          + '<span id="title-target">/ {{targetUnitsPerDay}} hours</span>'  
                         + '</div>'
                         + '<div id="github-button">'
-                        +  '<a id="github-btn" href="https://github.com/{{repo}}" class="waves-effect waves-light btn"><i id="github-icon" class="fa fa-github"></i>View on Githhub</a>'
+                        +  '<a id="github-btn" href="https://github.com/{{repo}}" class="waves-effect waves-light btn"><i id="github-icon" class="fa fa-github"></i>View on Github</a>'
                         + '</div>'
                         + '<div id="support-button">'
-                         + '<a id="support-btn" class="waves-effect waves-light btn">Back this project</a>'
+                         + '<a href="#modal1" id="support-btn" class="waves-effect waves-light btn modal-trigger">Back this project</a>'
                         + '</div>'
                         + '<div id="author">'        
                           + '<img id="author-img" class="circle responsive-img author-img" src="{{creator.picture}}">'
@@ -59,8 +73,12 @@ $(document).ready(function() {
     $.ajax({
     	type: "GET",
     	url: "/api/projects/"+docId,
+        complete: function() {
+            $('.modal-trigger').leanModal();    
+        },
     })
     .done(function(body) {
+
     	var data = body;
         console.log(data); 
     	var projectCard = new ProjectCard(data);
